@@ -191,12 +191,13 @@ var Swipeout = (0, _createReactClass2.default)({
 
     if (this.props.disabled) return;
     if (!this.state.openedLeft && !this.state.openedRight) {
-      this._callOnOpen();
+      // this._callOnOpen();
     } else {
       this._callOnClose();
     }
     this.refs.swipeoutContent.measure(function (ox, oy, width, height) {
       var buttonWidth = _this2.props.buttonWidth || width / 5;
+      
       _this2.setState({
         btnWidth: buttonWidth,
         btnsLeftWidth: _this2.props.left ? buttonWidth * _this2.props.left.length : 0,
@@ -211,6 +212,11 @@ var Swipeout = (0, _createReactClass2.default)({
     if (this.props.disabled) return;
     var posX = gestureState.dx;
     var posY = gestureState.dy;
+
+    if (Math.abs(posX) > (this.props.buttonWidth * 2)) {
+      this._callOnOpen();
+    }
+
     var leftWidth = this.state.btnsLeftWidth;
     var rightWidth = this.state.btnsRightWidth;
     if (this.state.openedRight) var posX = gestureState.dx - rightWidth;else if (this.state.openedLeft) var posX = gestureState.dx + leftWidth;
@@ -345,7 +351,7 @@ var Swipeout = (0, _createReactClass2.default)({
         btnsRightWidth: _this3.props.right ? btnWidth * _this3.props.right.length : 0
       }, function () {
         _this3._tweenContent('contentPos', -_this3.state.btnsRightWidth);
-        _this3._callOnOpen();
+        // _this3._callOnOpen();
         _this3.setState({
           contentPos: -_this3.state.btnsRightWidth,
           openedLeft: false,
@@ -367,7 +373,7 @@ var Swipeout = (0, _createReactClass2.default)({
         btnsLeftWidth: _this4.props.left ? btnWidth * _this4.props.left.length : 0
       }, function () {
         _this4._tweenContent('contentPos', _this4.state.btnsLeftWidth);
-        _this4._callOnOpen();
+        // _this4._callOnOpen();
         _this4.setState({
           contentPos: _this4.state.btnsLeftWidth,
           openedLeft: true,
