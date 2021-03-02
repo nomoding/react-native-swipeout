@@ -213,7 +213,7 @@ var Swipeout = (0, _createReactClass2.default)({
     var posX = gestureState.dx;
     var posY = gestureState.dy;
 
-    if (Math.abs(posX) > (this.props.buttonWidth * 2)) {
+    if (Math.abs(posX) > (this.props.buttonWidth * 5)) {
       this._callOnOpen();
     }
 
