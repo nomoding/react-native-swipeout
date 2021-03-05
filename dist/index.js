@@ -213,7 +213,7 @@ var Swipeout = (0, _createReactClass2.default)({
     var posX = gestureState.dx;
     var posY = gestureState.dy;
 
-    if (Math.abs(posX) > (this.props.buttonWidth * 5)) {
+    if (Math.abs(posX) > this.props.closeAtPosition) {
       this._callOnOpen();
     }
 
@@ -303,7 +303,7 @@ var Swipeout = (0, _createReactClass2.default)({
         rowID = _props.rowID,
         onOpen = _props.onOpen;
 
-    onOpen && onOpen(sectionID, rowID, direction);
+    // onOpen && onOpen(sectionID, rowID, direction);
     this._tweenContent('contentPos', contentPos);
     this.setState({
       contentPos: contentPos,

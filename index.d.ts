@@ -29,6 +29,7 @@ declare module 'react-native-swipeout' {
         sectionId?: number;
         openRight?: boolean;
         openLeft?: boolean;
+        closeAtPosition: number;
     }
 
     export default class Swipeout extends React.Component<SwipeoutProperties,any> {}
