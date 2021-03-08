@@ -213,10 +213,6 @@ var Swipeout = (0, _createReactClass2.default)({
     var posX = gestureState.dx;
     var posY = gestureState.dy;
 
-    if (Math.abs(posX) > this.props.closeAtPosition) {
-      this._callOnOpen();
-    }
-
     var leftWidth = this.state.btnsLeftWidth;
     var rightWidth = this.state.btnsRightWidth;
     if (this.state.openedRight) var posX = gestureState.dx - rightWidth;else if (this.state.openedLeft) var posX = gestureState.dx + leftWidth;
@@ -280,7 +276,12 @@ var Swipeout = (0, _createReactClass2.default)({
     this.tweenState(state, {
       easing: _reactTweenState2.default.easingTypes.easeInOutQuad,
       duration: endValue === 0 ? this.state.tweenDuration * 1.5 : this.state.tweenDuration,
-      endValue: endValue
+      endValue: endValue,
+      onEnd: () => {
+        if (endValue !== 0) {
+          this._callOnOpen();
+        }
+      }
     });
   },
 
@@ -305,6 +306,7 @@ var Swipeout = (0, _createReactClass2.default)({
 
     // onOpen && onOpen(sectionID, rowID, direction);
     this._tweenContent('contentPos', contentPos);
+
     this.setState({
       contentPos: contentPos,
       openedLeft: left,
